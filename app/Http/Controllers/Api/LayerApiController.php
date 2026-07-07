@@ -15,8 +15,6 @@ class LayerApiController extends Controller
      */
     public function index(): JsonResponse
     {
-        $this->authorize('view-layers');
-
         $layers = Layer::query()
             ->with(['styles', 'fields'])
             ->ordered()
@@ -62,8 +60,6 @@ class LayerApiController extends Controller
      */
     public function show(int $id): JsonResponse
     {
-        $this->authorize('view-layers');
-
         $layer = Layer::with(['styles', 'fields'])->findOrFail($id);
 
         return response()->json(['data' => $layer]);

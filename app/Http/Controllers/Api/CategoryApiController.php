@@ -11,8 +11,6 @@ class CategoryApiController extends Controller
 {
     public function index(): JsonResponse
     {
-        $this->authorize('view-categories');
-
         $categories = Category::orderBy('name')->get();
 
         return response()->json(['data' => $categories]);
